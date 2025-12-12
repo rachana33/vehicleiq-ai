@@ -33,7 +33,7 @@ const TelemetryChart = ({ data, selectedVehicle, vehicles, onVehicleChange }: Te
         </Select>
       </div>
       <div style={{ width: '100%', height: 300, minWidth: 0 }}>
-        <ResponsiveContainer width="99%" height="100%">
+        <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
             <XAxis

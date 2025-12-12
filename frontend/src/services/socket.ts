@@ -2,6 +2,7 @@ import { io, Socket } from 'socket.io-client';
 import { store } from '../store/store';
 import { updateTelemetry, setVehicles } from '../store/vehicleSlice';
 import { addAlert } from '../store/alertSlice';
+import { config } from '@/config';
 
 class SocketService {
     private socket: Socket | null = null;
@@ -9,7 +10,11 @@ class SocketService {
     connect() {
         if (this.socket) return;
 
-        this.socket = io(import.meta.env.VITE_WS_URL || 'http://localhost:3001');
+        // Use the same base URL as the API (without /api path)
+        const wsUrl = config.apiUrl;
+        console.log('🔌 Connecting to WebSocket:', wsUrl);
+
+        this.socket = io(wsUrl);
 
         this.socket.on('connect', () => {
             console.log('Connected to WebSocket');
