@@ -28,3 +28,14 @@ services:
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
     autoDeploy: true
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: vehicleiq-backend
+          property: url
+      - key: VITE_AI_URL
+        fromService:
+          type: web
+          name: vehicleiq-ai-service
+          property: url
