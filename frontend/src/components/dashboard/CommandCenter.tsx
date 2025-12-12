@@ -1,5 +1,6 @@
 import * as React from "react";
-CreditCard,
+import {
+    CreditCard,
     Settings,
     User,
     Truck,
