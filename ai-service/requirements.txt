@@ -1,0 +1,10 @@
+flask
+flask-cors
+# psycopg2-binary removed for sqlite
+redis
+scikit-learn
+pandas
+numpy
+openai
+python-dotenv
+requests

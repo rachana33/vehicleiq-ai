@@ -1,0 +1,10 @@
+{
+    "name": "vehicleiq-ai-root",
+    "version": "1.0.0",
+    "scripts": {
+        "setup": "npm install && cd frontend && npm install && cd ../backend && npm install && cd ../ai-service && pip install -r requirements.txt",
+        "start:backend": "cd backend && npm run dev",
+        "start:frontend": "cd frontend && npm run dev",
+        "start:ai": "cd ai-service && python3 app.py"
+    }
+}

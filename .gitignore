@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build artifacts
+frontend/dist/
+frontend/build/
+backend/dist/
+backend/*.log
+
+# Environment & secrets
+.env
+.env.local
+.env.*
+!.env.example
+*.env
+
+# Databases & data
+*.sqlite
+*.db
+backend/vehicleiq.sqlite
+
+# Python artifacts
+**/__pycache__/
+*.pyc
+
+# Python virtual environments
+venv/
+**/venv/
+
+# IDE/editor
+.vscode/
+.idea/
+.DS_Store
+
+# Temporary directories
+temp_ui/
+temp_ui_2/

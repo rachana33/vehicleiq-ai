@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: vehicleiq-backend
+    env: docker
+    rootDir: backend
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+  - type: web
+    name: vehicleiq-ai-service
+    env: docker
+    rootDir: ai-service
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: AI_PORT
+        value: "5000"
+      - key: OPENAI_API_KEY
+        sync: false
+
+  - type: web
+    name: vehicleiq-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    autoDeploy: true
