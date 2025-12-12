@@ -68,18 +68,28 @@ const PORT = process.env.PORT || 3001;
 // Start server only after database is initialized
 async function startServer() {
     try {
-        console.log('Initializing database...');
+        console.log('🚀 Starting VehicleIQ Backend...');
+        console.log('📊 Initializing database...');
         await initializeDatabase();
         console.log('✅ Database initialized successfully');
 
-        console.log('Initializing simulator...');
-        await simulator.initialize();
-        simulator.start();
-        console.log('✅ Simulator started');
-
+        // Start server immediately after DB is ready
         httpServer.listen(PORT, () => {
             console.log(`✅ Server running on port ${PORT}`);
         });
+
+        // Initialize simulator in background (don't block server startup)
+        console.log('🤖 Initializing simulator...');
+        simulator.initialize()
+            .then(() => {
+                simulator.start();
+                console.log('✅ Simulator started');
+            })
+            .catch(err => {
+                console.error('⚠️  Simulator failed to start:', err.message);
+                console.log('Server will continue running without simulator');
+            });
+
     } catch (error) {
         console.error('❌ Failed to start server:', error);
         process.exit(1);
