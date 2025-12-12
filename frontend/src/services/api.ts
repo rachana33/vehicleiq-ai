@@ -1,7 +1,14 @@
 import axios from 'axios';
+import { config } from '@/config';
+
+const apiBaseURL = config.apiUrl + '/api';
+const aiBaseURL = config.aiUrl + '/api/ai';
+
+console.log('🌐 API Base URL:', apiBaseURL);
+console.log('🤖 AI Base URL:', aiBaseURL);
 
 const api = axios.create({
-    baseURL: (import.meta.env.VITE_API_URL || 'http://localhost:3001') + '/api',
+    baseURL: apiBaseURL,
     headers: {
         'Content-Type': 'application/json',
     },
@@ -20,7 +27,7 @@ export const alertApi = {
 
 // AI Service API
 const aiApi = axios.create({
-    baseURL: (import.meta.env.VITE_AI_URL || 'http://localhost:5001') + '/api/ai',
+    baseURL: aiBaseURL,
     headers: { 'Content-Type': 'application/json' }
 });
 
