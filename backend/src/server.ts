@@ -37,6 +37,20 @@ app.get('/', (req, res) => {
     res.send('VehicleIQ Backend Running');
 });
 
+app.get('/api', (req, res) => {
+    res.json({
+        message: 'VehicleIQ API',
+        endpoints: [
+            'GET /api/vehicles',
+            'GET /api/vehicles/:id',
+            'GET /api/vehicles/:id/history',
+            'GET /api/alerts',
+            'POST /api/alerts/:id/acknowledge',
+            'GET /health'
+        ]
+    });
+});
+
 app.get('/health', async (req, res) => {
     try {
         // Check if database is accessible
