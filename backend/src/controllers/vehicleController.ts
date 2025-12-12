@@ -6,9 +6,14 @@ export const vehicleController = {
         try {
             const vehicles = await vehicleService.getAllVehicles();
             res.json(vehicles);
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ error: 'Internal server error' });
+        } catch (error: any) {
+            console.error('Error in getAllVehicles:', error.message);
+            console.error('Stack:', error.stack);
+            res.status(500).json({
+                error: 'Internal server error',
+                message: error.message,
+                hint: 'Database may not be initialized. Check /health endpoint.'
+            });
         }
     },
 

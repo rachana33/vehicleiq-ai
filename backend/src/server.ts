@@ -37,6 +37,27 @@ app.get('/', (req, res) => {
     res.send('VehicleIQ Backend Running');
 });
 
+app.get('/health', async (req, res) => {
+    try {
+        // Check if database is accessible
+        const result = await pool.query('SELECT COUNT(*) as count FROM vehicles');
+        res.json({
+            status: 'healthy',
+            database: 'connected',
+            vehicleCount: result.rows[0]?.count || 0,
+            timestamp: new Date().toISOString()
+        });
+    } catch (error: any) {
+        console.error('Health check failed:', error);
+        res.status(503).json({
+            status: 'unhealthy',
+            database: 'error',
+            error: error.message,
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
 const PORT = process.env.PORT || 3001;
 
 httpServer.listen(PORT, () => {
