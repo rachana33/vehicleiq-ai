@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton, Avatar } from '@mui/material';
+import { Box, AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, IconButton, Avatar } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
@@ -37,22 +37,22 @@ const GlassLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <Box sx={{ overflow: 'auto', mt: 2 }}>
                     <List>
                         {['Dashboard', 'Fleet View', 'Analytics', 'Drivers'].map((text, index) => (
-                            <ListItem button key={text} selected={index === 0} sx={{
-                                mb: 1,
-                                mx: 1,
-                                borderRadius: 1,
-                                '&.Mui-selected': {
-                                    background: 'rgba(0, 229, 255, 0.1)',
-                                    borderLeft: '4px solid #00e5ff'
-                                },
-                                '&:hover': {
-                                    background: 'rgba(255,255,255,0.05)'
-                                }
-                            }}>
-                                <ListItemIcon sx={{ color: index === 0 ? '#00e5ff' : 'rgba(255,255,255,0.7)' }}>
-                                    {index === 0 ? <DashboardIcon /> : index === 3 ? <PersonIcon /> : <SettingsIcon />}
-                                </ListItemIcon>
-                                <ListItemText primary={text} primaryTypographyProps={{ fontSize: '0.9rem', fontWeight: index === 0 ? 600 : 400 }} />
+                            <ListItem key={text} disablePadding sx={{ mb: 1, mx: 1 }}>
+                                <ListItemButton selected={index === 0} sx={{
+                                    borderRadius: 1,
+                                    '&.Mui-selected': {
+                                        background: 'rgba(0, 229, 255, 0.1)',
+                                        borderLeft: '4px solid #00e5ff'
+                                    },
+                                    '&:hover': {
+                                        background: 'rgba(255,255,255,0.05)'
+                                    }
+                                }}>
+                                    <ListItemIcon sx={{ color: index === 0 ? '#00e5ff' : 'rgba(255,255,255,0.7)' }}>
+                                        {index === 0 ? <DashboardIcon /> : index === 3 ? <PersonIcon /> : <SettingsIcon />}
+                                    </ListItemIcon>
+                                    <ListItemText primary={text} primaryTypographyProps={{ fontSize: '0.9rem', fontWeight: index === 0 ? 600 : 400 }} />
+                                </ListItemButton>
                             </ListItem>
                         ))}
                     </List>

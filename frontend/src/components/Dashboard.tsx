@@ -12,12 +12,12 @@ const Dashboard: React.FC = () => {
         <GlassLayout>
             <Grid container spacing={3} sx={{ height: 'calc(100vh - 100px)' }}>
                 {/* Top Metrics Row */}
-                <Grid item xs={12}>
+                <Grid size={{ xs: 12 }}>
                     <MetricsPanel />
                 </Grid>
 
                 {/* Main Content: Map (Left/Center) & Sidebar (Right) */}
-                <Grid item xs={12} md={8} lg={9} sx={{ height: '100%', minHeight: '500px', display: 'flex', flexDirection: 'column', gap: 3 }}>
+                <Grid size={{ xs: 12, md: 8, lg: 9 }} sx={{ height: '100%', minHeight: '500px', display: 'flex', flexDirection: 'column', gap: 3 }}>
                     {/* Map takes mostly full height */}
                     <Box sx={{ flexGrow: 1, height: '100%', minHeight: '400px', position: 'relative' }}>
                         <VehicleMap />
@@ -29,7 +29,7 @@ const Dashboard: React.FC = () => {
                 </Grid>
 
                 {/* Right Sidebar: Chat & Alerts */}
-                <Grid item xs={12} md={4} lg={3} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                <Grid size={{ xs: 12, md: 4, lg: 3 }} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                     <AlertsPanel />
                     <AIChat />
                 </Grid>
