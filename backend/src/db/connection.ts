@@ -74,7 +74,7 @@ export const pool = {
                 const result = await db.run(cleanSql, params);
 
                 // Simulate RETURNING * for UPDATE alerts
-                if (isUpdateReturning && result.changes > 0) {
+                if (isUpdateReturning && (result.changes || 0) > 0) {
                     // Hacky: assume id is the last param for the WHERE clause usually? 
                     // Or specifically for our known existing use cases: UPDATE ... WHERE id = $1
                     // in alertController it is: WHERE id = $1. So params[0] is the ID.

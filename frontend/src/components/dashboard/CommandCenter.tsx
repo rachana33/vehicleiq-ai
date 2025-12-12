@@ -1,13 +1,7 @@
 import * as React from "react";
-import {
-    Calculator,
-    Calendar,
-    CreditCard,
+CreditCard,
     Settings,
-    Smile,
     User,
-    Search,
-    Map,
     Truck,
     Video,
     Layers,
