@@ -15,15 +15,6 @@ const httpServer = createServer(app);
 
 import { simulator } from './services/simulatorService';
 
-// Initialize DB
-initializeDatabase()
-    .then(async () => {
-        console.log('Database initialized');
-        // Start simulator after DB is ready
-        await simulator.initialize();
-        simulator.start();
-    })
-    .catch(console.error);
 const io = new Server(httpServer, {
     cors: { origin: '*' } // Allow all for demo
 });
@@ -74,8 +65,27 @@ app.get('/health', async (req, res) => {
 
 const PORT = process.env.PORT || 3001;
 
-httpServer.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// Start server only after database is initialized
+async function startServer() {
+    try {
+        console.log('Initializing database...');
+        await initializeDatabase();
+        console.log('✅ Database initialized successfully');
+
+        console.log('Initializing simulator...');
+        await simulator.initialize();
+        simulator.start();
+        console.log('✅ Simulator started');
+
+        httpServer.listen(PORT, () => {
+            console.log(`✅ Server running on port ${PORT}`);
+        });
+    } catch (error) {
+        console.error('❌ Failed to start server:', error);
+        process.exit(1);
+    }
+}
+
+startServer();
 
 export { io };
