@@ -30,12 +30,6 @@ services:
     autoDeploy: true
     envVars:
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: vehicleiq-backend
-          property: url
+        value: https://vehicleiq-backend.onrender.com
       - key: VITE_AI_URL
-        fromService:
-          type: web
-          name: vehicleiq-ai-service
-          property: url
+        value: https://vehicleiq-ai-service.onrender.com
