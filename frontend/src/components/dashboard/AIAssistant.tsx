@@ -60,7 +60,7 @@ const AIAssistant = () => {
     if (lowerQ.includes('service') || lowerQ.includes('maintenance')) {
       return `Based on current data, ${randomVehicle} ${randomIssue} and ${randomVehicle2} ${randomIssue2}. I recommend scheduling service soon.`;
     } else if (lowerQ.includes('fuel') || lowerQ.includes('low')) {
-      return `${randomVehicle} currently has low fuel at 15%. ${randomVehicle2} is also running low at 18%.`;
+      return `Vehicles with low fuel: vehicle01 (18%), vehicle04 (15%), and vehicle05 (12%). I recommend refueling these vehicles soon.`;
     } else if (lowerQ.includes('status') || lowerQ.includes('fleet')) {
       return `Fleet status: 10 vehicles active. ${randomVehicle} ${randomIssue}. Overall fleet health is good.`;
     } else if (lowerQ.includes('alert') || lowerQ.includes('warning')) {
