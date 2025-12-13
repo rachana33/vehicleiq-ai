@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Paper, Typography, Box, TextField, Button, List, ListItem, Chip, CircularProgress } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
@@ -15,6 +15,12 @@ const AIChat: React.FC = () => {
         { sender: 'ai', text: 'Hello! I can help you monitor your fleet. Ask me anything like "Which vehicles need service?"' }
     ]);
     const [loading, setLoading] = useState(false);
+    const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    // Auto-scroll to bottom when messages change
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [messages]);
 
     const getFallbackResponse = (question: string): string => {
         const vehicles = ['vehicle01', 'vehicle02', 'vehicle03', 'vehicle04', 'vehicle05'];
@@ -101,6 +107,7 @@ const AIChat: React.FC = () => {
                             <CircularProgress size={20} />
                         </ListItem>
                     )}
+                    <div ref={messagesEndRef} />
                 </List>
             </Box>
 
