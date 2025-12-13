@@ -46,7 +46,7 @@ const AIChat: React.FC = () => {
         } else if (lowerQ.includes('fuel') || lowerQ.includes('low')) {
             return `${randomVehicle} currently has low fuel at 15%. ${randomVehicle2} is also running low at 18%.`;
         } else if (lowerQ.includes('status') || lowerQ.includes('fleet')) {
-            return `Fleet status: 5 vehicles active. ${randomVehicle} ${randomIssue}. Overall fleet health is good.`;
+            return `Fleet status: 10 vehicles active. ${randomVehicle} ${randomIssue}. Overall fleet health is good.`;
         } else if (lowerQ.includes('alert') || lowerQ.includes('warning')) {
             return `Active alerts: ${randomVehicle} - ${randomIssue}. ${randomVehicle2} - ${randomIssue2}.`;
         } else {
