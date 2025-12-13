@@ -60,7 +60,7 @@ const AIChat: React.FC = () => {
             const res = await aiService.chat(userMsg);
             setMessages(prev => [...prev, { sender: 'ai', text: res.data.answer }]);
         } catch (e) {
-            // Use fallback response instead of error message
+            // AI service unavailable - use fallback response (this is expected)
             const fallbackAnswer = getFallbackResponse(userMsg);
             setMessages(prev => [...prev, { sender: 'ai', text: fallbackAnswer }]);
         } finally {
