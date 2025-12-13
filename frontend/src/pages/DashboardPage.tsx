@@ -186,23 +186,25 @@ const DashboardPage = () => {
 
   // useEffect to fetch history when selected vehicle changes
   useEffect(() => {
-    if (selectedVehicleId) {
-      vehicleApi.getHistory(selectedVehicleId)
-        .then(res => {
-          // Assuming API returns array of Telemetry
-          const formatted = res.data.map((t: Telemetry) => ({
-            time: new Date(t.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            speed: t.speed,
-            temp: t.engine_temp
-          }));
-          // Reverse if needed, or sort. Usually history is newest first or oldest first. 
-          // Let's assume we want time ascending.
-          setHistory(formatted);
-        })
-        .catch(console.error);
-    } else {
-      setHistory([]);
-    }
+    // Default to vehicle01 if no vehicle is selected
+    const vehicleToShow = selectedVehicleId || 'vehicle01';
+
+    vehicleApi.getHistory(vehicleToShow)
+      .then(res => {
+        // Assuming API returns array of Telemetry
+        const formatted = res.data.map((t: Telemetry) => ({
+          time: new Date(t.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          speed: t.speed,
+          temp: t.engine_temp
+        }));
+        // Reverse if needed, or sort. Usually history is newest first or oldest first. 
+        // Let's assume we want time ascending.
+        setHistory(formatted);
+      })
+      .catch(err => {
+        console.error('Failed to fetch history:', err);
+        setHistory([]);
+      });
   }, [selectedVehicleId]);
 
   const chartData = history;
@@ -277,7 +279,7 @@ const DashboardPage = () => {
           <div className="lg:col-span-2">
             <TelemetryChart
               data={chartData}
-              selectedVehicle={selectedVehicleId || ''}
+              selectedVehicle={selectedVehicleId || 'vehicle01'}
               vehicles={mergedVehicles.map((v) => v.id)}
               onVehicleChange={(id) => dispatch(setSelectedVehicle(id))}
             />
