@@ -22,7 +22,7 @@ services:
         sync: false
 
   - type: web
-    name: vehicleiq-ft
+    name: vehicleiq-frontend
     env: static
     rootDir: frontend
     buildCommand: npm ci && npm run build
