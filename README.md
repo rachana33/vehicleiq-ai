@@ -4,7 +4,7 @@
 
 **Real-time Fleet Tracking • AI-Powered Insights • Predictive Maintenance**
 
-[![Live Demo](https://img.shields.io/badge/demo-live-success)](https://vehicleiq-ai-service.onrender.com)
+[![Live Demo](https://img.shields.io/badge/demo-live-success)](https://vehicleai-ft.onrender.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)

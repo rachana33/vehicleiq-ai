@@ -3,7 +3,7 @@ import { Loader2, Server, CheckCircle2, AlertCircle } from 'lucide-react';
 
 interface BackendSyncPopupProps {
     isVisible: boolean;
-    status: 'connecting' | 'syncing' | 'ready' | 'error';
+    status: 'connecting' | 'syncing' | 'ready' | 'demo' | 'error';
     message?: string;
 }
 
@@ -46,6 +46,14 @@ const BackendSyncPopup = ({ isVisible, status, message }: BackendSyncPopupProps)
                     subtitle: 'All systems operational',
                     bgGradient: 'from-green-500/20 to-emerald-500/20',
                     borderColor: 'border-green-500/30',
+                };
+            case 'demo':
+                return {
+                    icon: <Server className="w-12 h-12 text-purple-400" />,
+                    title: 'Demo Mode',
+                    subtitle: message || 'Running with sample data',
+                    bgGradient: 'from-purple-500/20 to-pink-500/20',
+                    borderColor: 'border-purple-500/30',
                 };
             case 'error':
                 return {
